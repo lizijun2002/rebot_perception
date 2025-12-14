@@ -1,0 +1,25 @@
+device: "cuda"
+img_size: 768
+num_classes: 19
+
+inputs:
+  night: "demo/night.png"
+  rain:  "demo/rain.png"
+  snow:  "demo/snow.png"
+
+output_dir: "outputs"
+
+csfnet:
+  mode: "jit"                         # "jit" or "pth"
+  weight_path: "weights/csfnet.pt"    # torchscript path if mode=jit
+  thresholded_argmax: true
+
+ours:
+  mode: "jit"
+  weight_path: "weights/ours.pt"
+  thresholded_argmax: true
+
+marigold:
+  enabled: true
+  use_fp16: true
+  model_id: "prs-eth/marigold-depth-lcm-v1-0"
